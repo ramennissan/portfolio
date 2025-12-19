@@ -1,11 +1,9 @@
-import React from 'react'
+import styles from '../styles/Footer.module.css'
 
-const Footer: React.FC = () => {
+export default function Footer() {
   return (
-    <footer>
-      <p>&copy; 2024 My Portfolio. All rights reserved.</p>
+    <footer className={styles.footer}>
+      <p>© {new Date().getFullYear()} Ramen Nissan</p>
     </footer>
   )
 }
-
-export default Footer

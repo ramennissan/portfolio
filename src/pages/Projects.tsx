@@ -1,12 +1,8 @@
-import React from 'react'
-
-const Projects: React.FC = () => {
+export default function Projects() {
   return (
-    <div>
+    <section style={{ padding: '2rem' }}>
       <h1>My Projects</h1>
-      <p>Here are some of the projects I've worked on.</p>
-    </div>
+      <p>Add your projects here.</p>
+    </section>
   )
 }
-
-export default Projects

@@ -1,12 +1,8 @@
-import React from 'react'
-
-const About: React.FC = () => {
+export default function About() {
   return (
-    <div>
+    <section style={{ padding: '2rem' }}>
       <h1>About Me</h1>
-      <p>Learn more about my background and skills.</p>
-    </div>
+      <p>Add information about yourself here.</p>
+    </section>
   )
 }
-
-export default About

@@ -1,0 +1,28 @@
+@reference "tailwindcss";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  @apply bg-white text-gray-900;
+}
+
+.dark .header {
+  @apply bg-[#2a2a28] text-white;
+}
+
+.navList {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.navList a {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.navList a:hover {
+  text-decoration: underline;
+}

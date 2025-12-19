@@ -2,7 +2,7 @@
 
 My personal portfolio website showcasing my development projects and skills.
 
-## Getting Started
+## Getting Started (if you want to run it locally)
 
 1. Install dependencies:
    ```bash

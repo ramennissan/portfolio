@@ -1,0 +1,63 @@
+.card {
+  @apply bg-white border border-gray-200;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.dark .card {
+  @apply bg-gray-800 border-gray-700;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.title {
+  margin: 0 0 0.5rem 0;
+  @apply text-gray-800;
+  font-size: 1.25rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.dark .title {
+  @apply text-white;
+}
+
+.description {
+  margin: 0 0 1rem 0;
+  @apply text-gray-600;
+  line-height: 1.5;
+  transition: color 0.3s ease;
+}
+
+.dark .description {
+  @apply text-gray-400;
+}
+
+.link {
+  @apply text-blue-500;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.link:hover {
+  @apply text-blue-700;
+  text-decoration: underline;
+}
+
+.link::after {
+  content: "→";
+  transition: transform 0.2s ease;
+}
+
+.link:hover::after {
+  transform: translateX(2px);
+}
+

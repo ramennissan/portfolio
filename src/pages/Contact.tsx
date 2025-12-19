@@ -1,12 +1,8 @@
-import React from 'react'
-
-const Contact: React.FC = () => {
+export default function Contact() {
   return (
-    <div>
+    <section style={{ padding: '2rem' }}>
       <h1>Contact Me</h1>
-      <p>Get in touch with me.</p>
-    </div>
+      <p>Add your contact information here.</p>
+    </section>
   )
 }
-
-export default Contact

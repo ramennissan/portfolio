@@ -1,17 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-const Header: React.FC = () => {
+export default function Header() {
   return (
-    <header>
+    <header className="flex justify-between items-center p-4 px-8 bg-gray-100 dark:bg-[#2a2a28] text-gray-900 dark:text-white transition-colors duration-300">
       <nav>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/projects">Projects</Link>
-        <Link to="/contact">Contact</Link>
+        <ul className="flex gap-6 list-none">
+          <li><Link to="/" className="no-underline font-medium hover:underline">Home</Link></li>
+          <li><Link to="/about" className="no-underline font-medium hover:underline">About</Link></li>
+          <li><Link to="/projects" className="no-underline font-medium hover:underline">Projects</Link></li>
+          <li><Link to="/contact" className="no-underline font-medium hover:underline">Contact</Link></li>
+        </ul>
       </nav>
     </header>
-  )
+  );
 }
-
-export default Header

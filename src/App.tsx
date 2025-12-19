@@ -1,27 +1,20 @@
-import React from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
-import Footer from './components/Footer'
-import Home from './pages/Home'
-import About from './pages/About'
-import Projects from './pages/Projects'
-import Contact from './pages/Contact'
+import ThemeToggle from './components/ThemeToggle'
+import SocialLinks from './components/SocialLinks'
 
-function App() {
+export default function App() {
   return (
-    <BrowserRouter>
+    <div className="min-h-screen bg-white dark:bg-[#1f1f1d] transition-colors duration-300">
       <Header />
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </main>
-      <Footer />
-    </BrowserRouter>
+      <div className="fixed top-[17px] right-5 z-50 flex items-center gap-4">
+        <SocialLinks />
+        <div className="h-6 w-px bg-gray-300 dark:bg-gray-700" />
+        <ThemeToggle />
+      </div>
+      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] text-black dark:text-white transition-colors duration-300">
+        <h1 className="text-4xl font-bold mb-4">🚧 Website Under Construction 🚧</h1>
+        <p className="text-lg text-gray-600 dark:text-gray-300">...</p>
+      </div>
+    </div>
   )
 }
-
-export default App
