@@ -1,6 +1,11 @@
+import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import ThemeToggle from './components/ThemeToggle'
 import SocialLinks from './components/SocialLinks'
+import About from './pages/About'
+import Projects from './pages/Projects'
+import Blog from './pages/Blog'
+import Bookshelf from './pages/Bookshelf'
 
 export default function App() {
   return (
@@ -11,10 +16,12 @@ export default function App() {
         <div className="h-6 w-px bg-gray-300 dark:bg-gray-700" />
         <ThemeToggle />
       </div>
-      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] text-black dark:text-white transition-colors duration-300">
-        <h1 className="text-4xl font-bold mb-4">🚧 Website Under Construction 🚧</h1>
-        <p className="text-lg text-gray-600 dark:text-gray-300">...</p>
-      </div>
+      <Routes>
+        <Route path="/" element={<About />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/bookshelf" element={<Bookshelf />} />
+      </Routes>
     </div>
   )
 }

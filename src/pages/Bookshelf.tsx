@@ -1,7 +1,7 @@
-export default function Projects() {
+export default function Bookshelf() {
   return (
     <section style={{ padding: '2rem' }}>
-      <h1>My Projects</h1>
+      <h1>Bookshelf</h1>
       <p></p>
     </section>
   )
