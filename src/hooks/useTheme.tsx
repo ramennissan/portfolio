@@ -1,17 +1,17 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 
 export type Theme = 'light' | 'dark' | 'system';
 
 type ThemeProviderState = {
-  theme: Theme;
-  setTheme: (theme: Theme) => void;
+    theme: Theme;
+    setTheme: (theme: Theme) => void;
 };
 
 const STORAGE_KEY = 'theme-preference';
 
 const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undefined);
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
+export function ThemeProvider({ children }: { children: ReactNode }) {
     const [theme, setTheme] = useState<Theme>(() => {
         // This now runs only on the client, so window is safe to access
         return (localStorage.getItem(STORAGE_KEY) as Theme) || 'system';
@@ -19,7 +19,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     useEffect(() => {
         const root = window.document.documentElement;
-        
+
         const applyTheme = (themeToApply: Theme) => {
             if (themeToApply === 'dark') {
                 root.classList.add('dark');
@@ -37,13 +37,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         };
 
         applyTheme(theme);
-        
+
         // Persist the user's choice
         if (theme !== 'system') {
-          localStorage.setItem(STORAGE_KEY, theme);
+            localStorage.setItem(STORAGE_KEY, theme);
         } else {
-          // If they select 'system', remove the stored preference
-          localStorage.removeItem(STORAGE_KEY);
+            // If they select 'system', remove the stored preference
+            localStorage.removeItem(STORAGE_KEY);
         }
 
 

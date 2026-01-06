@@ -45,10 +45,10 @@ export default function Header() {
   // Determine which dropdown items to show (only items NOT currently displayed)
   const getDropdownItems = () => {
     const items = [];
-    const currentPath = location.pathname === '/blog' || location.pathname === '/bookshelf' 
-      ? location.pathname 
+    const currentPath = location.pathname === '/blog' || location.pathname === '/bookshelf'
+      ? location.pathname
       : lastVisitedBlogPage;
-    
+
     if (currentPath !== '/blog') {
       items.push({ path: '/blog', label: 'Blog' });
     }
@@ -93,8 +93,8 @@ export default function Header() {
       <nav>
         <ul className="flex gap-6 list-none items-center">
           <li>
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="no-underline font-medium relative transition-colors hover:text-[#0073d5]"
             >
               About
@@ -109,8 +109,8 @@ export default function Header() {
             </Link>
           </li>
           <li>
-            <Link 
-              to="/projects" 
+            <Link
+              to="/projects"
               className="no-underline font-medium relative transition-colors hover:text-[#0073d5]"
             >
               Projects
@@ -126,8 +126,8 @@ export default function Header() {
           </li>
           <li className="relative" ref={dropdownRef}>
             <div className="flex items-center gap-1">
-              <Link 
-                to={currentBlogPage.path} 
+              <Link
+                to={currentBlogPage.path}
                 className="no-underline font-medium relative transition-colors hover:text-[#0073d5]"
               >
                 {currentBlogPage.label}
@@ -143,7 +143,7 @@ export default function Header() {
               {hasDropdownItems && (
                 <button
                   onClick={() => setIsBlogDropdownOpen(!isBlogDropdownOpen)}
-                  className="bg-transparent border-none cursor-pointer text-inherit flex items-center"
+                  className="bg-transparent border-none cursor-pointer text-inherit flex items-center hover:text-[#0073d5] transition-colors"
                   aria-label="Toggle blog dropdown"
                 >
                   <motion.span
