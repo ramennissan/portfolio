@@ -1,13 +1,13 @@
-import GitHubChart from '../components/GitHubChart';
+// import GitHubChart from '../components/GitHubChart';
 
 export default function About() {
   return (
     <section style={{ padding: '2rem' }}>
       <h1>About Me</h1>
       <p></p>
-      <div>
+      {/* <div>
         <GitHubChart username="RamenNissan" />
-      </div>
+      </div> */}
     </section>
   )
 }
