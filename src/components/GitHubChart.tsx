@@ -30,11 +30,27 @@ const GitHubChart = memo(function GitHubChart({ username }: { username: string }
   }, [theme]);
 
   const themeColors = useMemo(() => ({
-    light: ["#ededed", "#c6e48b", "#7bc96f", "#239a3b", "#196127"],
-    dark: ["#e5e6eb", "#0e4429", "#006d32", "#26a641", "#39d353"],
+    light: ["#e5e7eb", "#b9f7cf", "#7bf2a8", "#1ac851", "#0d8236"],
+    dark: ["#cfcfcf", "#b9f7cf", "#7bf2a8", "#1ac851", "#0d8236"],
   }), []);
 
   const currentColors = isDark ? themeColors.dark : themeColors.light;
+
+  // Lighten a hex color by a percentage (0-100) towards white
+  const lightenHex = (hex: string, percent: number) => {
+    const normalized = hex.replace('#', '');
+    const r = parseInt(normalized.substring(0, 2), 16);
+    const g = parseInt(normalized.substring(2, 4), 16);
+    const b = parseInt(normalized.substring(4, 6), 16);
+    const amt = Math.min(Math.max(percent, 0), 100) / 100;
+    const nr = Math.round(r + (255 - r) * amt);
+    const ng = Math.round(g + (255 - g) * amt);
+    const nb = Math.round(b + (255 - b) * amt);
+    const toHex = (v: number) => v.toString(16).padStart(2, '0');
+    return `#${toHex(nr)}${toHex(ng)}${toHex(nb)}`;
+  };
+
+  
 
   return (
     <motion.section
@@ -84,14 +100,10 @@ const GitHubChart = memo(function GitHubChart({ username }: { username: string }
         </div>
 
         <div className="flex justify-center github-calendar-wrapper">
-          {/* CSS Override as a backup to ensure the dark mode background color applies */}
-          {isDark && (
-            <style>{`
-              .github-calendar-wrapper rect[data-level="0"] {
-                fill: ${currentColors[0]} !important;
-              }
-            `}</style>
-          )}
+          <style>{`
+            ${isDark ? `.github-calendar-wrapper rect[data-level="0"] { fill: ${currentColors[0]} !important; }` : ''}
+            .github-calendar-wrapper rect { stroke: none !important; stroke-width: 0 !important; }
+          `}</style>
           <a
             href={`https://github.com/${username}`}
             target="_blank"
