@@ -14,3 +14,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     </ThemeProvider>
   </React.StrictMode>
 )
+
+// Note: overscroll prevention utility is disabled because the app now uses
+// a fixed `.app-scroll` container which avoids elastic overscroll.

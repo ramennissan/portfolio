@@ -1,3 +1,5 @@
+@reference "tailwindcss";
+
 .card {
   @apply bg-white border border-gray-200;
   border-radius: 8px;

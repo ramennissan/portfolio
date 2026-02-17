@@ -17,7 +17,9 @@ function SocialLink({ href, icon: Icon, label, hoverColorClass, darkHoverColorCl
       rel="noopener noreferrer"
       className={`relative inline-block text-lg text-gray-700 dark:text-gray-300 cursor-pointer ${hoverColorClass} ${darkHoverColorClass} transition-colors duration-200`}
       aria-label={label}
-      whileHover={{ scale: 1.1 }}
+      title={label}
+      whileHover="hover"
+      whileTap={{ scale: 0.95 }}
       transition={{
         type: "spring",
         stiffness: 400,
@@ -26,9 +28,12 @@ function SocialLink({ href, icon: Icon, label, hoverColorClass, darkHoverColorCl
     >
       <Icon />
       <motion.div
-        className="absolute -bottom-1.5 left-0 h-[1.5px] bg-current origin-left"
-        initial={{ width: 0 }}
-        whileHover={{ width: "100%" }}
+        className="absolute bottom-[-2px] left-0 right-0 h-[1.5px] bg-current"
+        initial={{ scaleX: 0 }}
+        variants={{
+          hover: { scaleX: 1 }
+        }}
+        style={{ originX: 0.5 }}
         transition={{
           type: "spring",
           stiffness: 400,
@@ -41,7 +46,7 @@ function SocialLink({ href, icon: Icon, label, hoverColorClass, darkHoverColorCl
 
 export default function SocialLinks() {
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-3">
       <SocialLink
         href="https://github.com/ramennissan"
         icon={FaGithub}

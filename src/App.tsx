@@ -1,7 +1,10 @@
 import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
-import ThemeToggle from './components/ThemeToggle'
-import SocialLinks from './components/SocialLinks'
+import BackgroundDecor from './components/BackgroundDecor'
+import {
+  ScrollProgressProvider,
+  ScrollProgress,
+} from '@/components/animate-ui/primitives/animate/scroll-progress';
 import { Suspense, lazy } from 'react'
 
 const About = lazy(() => import('./pages/About'))
@@ -19,21 +22,24 @@ function LoadingSpinner() {
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white dark:bg-[#1f1f1d] text-gray-900 dark:text-gray-100 transition-colors duration-300">
-      <Header />
-      <div className="fixed top-[17px] right-5 z-50 flex items-center gap-4">
-        <SocialLinks />
-        <div className="h-6 w-px bg-gray-300 dark:bg-gray-700" />
-        <ThemeToggle />
+    <ScrollProgressProvider global>
+      <div className="app-scroll bg-white dark:bg-[#1f1f1d] text-gray-900 dark:text-gray-100 transition-colors duration-300 relative overflow-x-hidden">
+        <div className="fixed bottom-0 left-0 right-0 z-[100]">
+          <ScrollProgress className="h-1" style={{ backgroundColor: '#0273d5' }} />
+        </div>
+        <BackgroundDecor />
+        <div className="relative z-10 min-h-full">
+          <Header />
+          <Suspense fallback={<LoadingSpinner />}>
+            <Routes>
+              <Route path="/" element={<About />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/bookshelf" element={<Bookshelf />} />
+            </Routes>
+          </Suspense>
+        </div>
       </div>
-      <Suspense fallback={<LoadingSpinner />}>
-        <Routes>
-          <Route path="/" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/bookshelf" element={<Bookshelf />} />
-        </Routes>
-      </Suspense>
-    </div>
+    </ScrollProgressProvider>
   )
 }

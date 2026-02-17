@@ -1,5 +1,5 @@
 import { useTheme, Theme } from '@/hooks/useTheme'
-import {FaMoon, FaDesktop } from 'react-icons/fa'
+import { FaMoon, FaDesktop } from 'react-icons/fa'
 import { MdSunny } from 'react-icons/md'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
@@ -27,15 +27,15 @@ function getEffectiveTheme(theme: Theme): EffectiveTheme {
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme()
   const prevEffectiveThemeRef = useRef<EffectiveTheme>(getEffectiveTheme(theme))
-  const [systemPref, setSystemPref] = useState(() => 
+  const [systemPref, setSystemPref] = useState(() =>
     typeof window !== 'undefined' ? window.matchMedia('(prefers-color-scheme: dark)').matches : false
   )
-  
+
   // Calculate current effective theme and whether to animate
   const currentEffectiveTheme = getEffectiveTheme(theme)
   const prevEffectiveTheme = prevEffectiveThemeRef.current
   const shouldAnimate = currentEffectiveTheme !== prevEffectiveTheme
-  
+
   // Update ref after render
   useEffect(() => {
     prevEffectiveThemeRef.current = currentEffectiveTheme
@@ -49,7 +49,7 @@ export default function ThemeToggle() {
     const handleSystemChange = (e: MediaQueryListEvent) => {
       setSystemPref(e.matches)
     }
-    
+
     mediaQuery.addEventListener('change', handleSystemChange)
     return () => mediaQuery.removeEventListener('change', handleSystemChange)
   }, [theme])

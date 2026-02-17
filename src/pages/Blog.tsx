@@ -1,6 +1,6 @@
 export default function Blog() {
   return (
-    <section style={{ padding: '2rem' }}>
+    <section style={{ padding: '6rem 2rem 2rem 2rem' }}>
       <h1>Blog</h1>
       <p></p>
     </section>
