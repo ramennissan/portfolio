@@ -1,0 +1,13 @@
+@reference "tailwindcss";
+
+.footer {
+  text-align: center;
+  padding: 1rem;
+  @apply bg-gray-200 text-gray-800;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark .footer {
+  @apply bg-gray-900 text-gray-200;
+}

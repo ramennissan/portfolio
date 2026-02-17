@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Hide scrollbar for all browsers */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Prevent scroll chaining / overscroll behavior where supported */
+html, body, #root {
+  /* keep vertical overscroll contained, but allow horizontal overscroll so
+     browser navigation gestures (two-finger back/forward) still work */
+  overscroll-behavior-y: contain;
+  overscroll-behavior-x: auto;
+}
+
+/* Use a fixed viewport scroll container to avoid platform rubber-banding */
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+}
+
+.app-scroll {
+  height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  /* allow horizontal gestures and touchpad panning while keeping vertical
+     overscroll contained for the page */
+  overscroll-behavior-x: auto;
+  overscroll-behavior-y: contain;
+  touch-action: pan-y;
+}
+
+/* Hide scrollbar for the app scroll container */
+.app-scroll {
+  scrollbar-width: none; /* Firefox */
+}
+.app-scroll::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+
+/* Ensure page background matches content so brief rubberband doesn't reveal a different color */
+html, body {
+  background-color: #ffffff;
+}
+
+.dark html, .dark body {
+  background-color: #0b0b0b;
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition-property: background-color, border-color, color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}

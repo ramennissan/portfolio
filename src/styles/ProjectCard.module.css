@@ -1,0 +1,103 @@
+@reference "tailwindcss";
+
+.card {
+  @apply bg-white border border-gray-200;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+:global(.dark) .card {
+  background-color: #353534 !important; /* lighter version of page dark #1f1f1d */
+  border-color: #2b2b29 !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.6);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.title {
+  margin: 0 0 0.5rem 0;
+  @apply text-gray-800;
+  font-size: 1.25rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+:global(.dark) .title {
+  @apply text-white;
+}
+
+.description {
+  margin: 0 0 1rem 0;
+  @apply text-gray-600;
+  line-height: 1.5;
+  transition: color 0.3s ease;
+}
+
+:global(.dark) .description {
+  @apply text-gray-400;
+}
+
+.link {
+  @apply text-blue-500;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.link:hover {
+  @apply text-blue-700;
+  text-decoration: underline;
+}
+
+:global(.dark) .link {
+  @apply text-blue-300;
+}
+
+:global(.dark) .link:hover {
+  @apply text-blue-200;
+}
+
+.link::after {
+  content: "→";
+  transition: transform 0.2s ease;
+}
+
+.link:hover::after {
+  transform: translateX(2px);
+}
+
+.tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.tag {
+  background: #f1f5f9;
+  color: #0f172a;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+}
+
+:global(.dark) .tag {
+  background-color: #424241 !important; /* slightly lighter than card */
+  color: #f3f4f6 !important;
+}
+
+/* Ensure card content contrasts in dark mode */
+:global(.dark) .title { @apply text-white }
+:global(.dark) .description { @apply text-gray-300 }
+
+.cardFooter {
+  margin-top: 0.5rem;
+}
+
