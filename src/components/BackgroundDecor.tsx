@@ -40,10 +40,13 @@ const BackgroundDecor = memo(function BackgroundDecor() {
             updateDimensions();
         });
 
-        // Observe the scroll container's own size AND its main content so changes in content length update the canvas.
+        // Observe the scroll container's own size AND the main content element so
+        // changes in content length update the canvas. The provider structure
+        // may include fixed siblings, so don't rely on firstElementChild — find
+        // the actual content wrapper (the one with the page routes).
         if (scrollContainer) {
             resizeObserver.observe(scrollContainer);
-            const contentEl = scrollContainer.firstElementChild as HTMLElement | null;
+            const contentEl = (scrollContainer.querySelector('.relative.z-10') as HTMLElement | null) || (scrollContainer.firstElementChild as HTMLElement | null);
             if (contentEl) resizeObserver.observe(contentEl);
         } else {
             resizeObserver.observe(document.body);

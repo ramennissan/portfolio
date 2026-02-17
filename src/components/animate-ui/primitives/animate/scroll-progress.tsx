@@ -28,17 +28,14 @@ const ScrollProgressContext = createContext<ScrollProgressContextType | undefine
     undefined
 );
 
-export function ScrollProgressProvider({
-    children,
-    global = false,
-    direction = "vertical",
-    transition = { stiffness: 250, damping: 40, bounce: 0 },
-}: {
+export function ScrollProgressProvider(props: {
     children: React.ReactNode;
     global?: boolean;
     direction?: ScrollProgressDirection;
     transition?: SpringOptions;
+    className?: string;
 }) {
+    const { children, global = false, direction = 'vertical', transition = { stiffness: 250, damping: 40, bounce: 0 }, className } = props;
     const containerRef = useRef<HTMLDivElement>(null);
 
     // Global scroll uses window, local scroll uses the containerRef
@@ -61,7 +58,7 @@ export function ScrollProgressProvider({
             <div
                 ref={global ? undefined : containerRef}
                 className={cn(
-                    global ? "" : "relative h-full w-full overflow-hidden"
+                    global ? "" : className ?? "relative h-full w-full overflow-hidden"
                 )}
             >
                 {children}

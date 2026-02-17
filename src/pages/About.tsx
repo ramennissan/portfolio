@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import "react-medium-image-zoom/dist/styles.css";
 
 import { Project as ProjectType } from "../components/ProjectCard";
+import { Research } from "../components/ResearchCard";
 import Hero from "../components/about/Hero";
 import TLDR from "../components/about/tldr";
 import ImportantDocuments from "../components/about/ImportantDocuments";
@@ -24,13 +25,14 @@ export default function About() {
   // You can easily edit your info here:
   const currentProjects: ProjectType[] = [
     {
-      id: "project-1",
-      title: "Your Project Title",
-      description: "A brief description of what you built and the technologies used.",
-      link: "https://github.com/yourusername/project",
-      linkText: "View on GitHub"
-    },
-    // Add more projects here
+      id: '2doit',
+      title: '2DoIT',
+      description: 'A lightweight iOS to-do list app built with SwiftUI, designed to help students organize assignments, exams, and deadlines efficiently.',
+      link: 'https://github.com/ramennissan/2DoIT',
+      linkText: 'View on GitHub',
+      tags: ['App', 'Not Released'],
+      githubUrl: 'https://github.com/ramennissan/2DoIT'
+    }
   ];
 
   const featuredResearch: Research[] = [

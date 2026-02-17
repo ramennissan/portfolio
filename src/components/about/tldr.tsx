@@ -8,8 +8,18 @@ export default function TLDR()
         const target = document.getElementById('education');
         if (!target) return;
 
-        const startY = window.scrollY;
-        const targetY = target.getBoundingClientRect().top + window.scrollY;
+        const container = document.querySelector('.app-scroll') as HTMLElement | null;
+
+        const getStartY = () => (container ? container.scrollTop : window.scrollY);
+
+        const targetRect = target.getBoundingClientRect();
+        const containerRect = container ? container.getBoundingClientRect() : { top: 0 };
+
+        const targetY = container
+            ? targetRect.top - containerRect.top + container.scrollTop
+            : targetRect.top + window.scrollY;
+
+        const startY = getStartY();
         const distance = targetY - startY;
         const duration = 450;
         let startTime: number | null = null;
@@ -25,7 +35,13 @@ export default function TLDR()
             const progress = Math.min(elapsed / duration, 1);
             const eased = easeInOutQuad(progress);
 
-            window.scrollTo({ top: startY + distance * eased });
+            const next = startY + distance * eased;
+
+            if (container) {
+                container.scrollTop = next;
+            } else {
+                window.scrollTo({ top: next });
+            }
 
             if (progress < 1) {
                 window.requestAnimationFrame(step);

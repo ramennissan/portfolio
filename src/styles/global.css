@@ -10,8 +10,10 @@ html {
 
 /* Prevent scroll chaining / overscroll behavior where supported */
 html, body, #root {
+  /* keep vertical overscroll contained, but allow horizontal overscroll so
+     browser navigation gestures (two-finger back/forward) still work */
   overscroll-behavior-y: contain;
-  overscroll-behavior-x: none;
+  overscroll-behavior-x: auto;
 }
 
 /* Use a fixed viewport scroll container to avoid platform rubber-banding */
@@ -24,8 +26,18 @@ html, body, #root {
   height: 100vh;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
+  /* allow horizontal gestures and touchpad panning while keeping vertical
+     overscroll contained for the page */
+  overscroll-behavior-x: auto;
+  overscroll-behavior-y: contain;
+  touch-action: pan-y;
 }
+
+/* Hide scrollbar for the app scroll container */
+.app-scroll {
+  scrollbar-width: none; /* Firefox */
+}
+.app-scroll::-webkit-scrollbar { display: none; } /* Chrome/Safari */
 
 /* Ensure page background matches content so brief rubberband doesn't reveal a different color */
 html, body {
