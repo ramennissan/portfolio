@@ -15,9 +15,10 @@ export default defineConfig({
   server: {
     open: true
   },
-  base: '/portfolio/', 
+  base: '/',
   build: {
     outDir: 'dist',
+    emptyOutDir: true, // ensures old files don’t linger
     rollupOptions: {
       output: {
         entryFileNames: `assets/[name].js`,
