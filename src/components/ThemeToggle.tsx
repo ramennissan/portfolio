@@ -24,7 +24,7 @@ function getEffectiveTheme(theme: Theme): EffectiveTheme {
   return 'light'
 }
 
-export default function ThemeToggle() {
+export default function ThemeToggle({ sizeClass }: { sizeClass?: string }) {
   const { theme, setTheme } = useTheme()
   const prevEffectiveThemeRef = useRef<EffectiveTheme>(getEffectiveTheme(theme))
   const [systemPref, setSystemPref] = useState(() =>
@@ -64,7 +64,7 @@ export default function ThemeToggle() {
   return (
     <motion.button
       onClick={cycleTheme}
-      className="text-lg text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200 cursor-pointer"
+      className={`${sizeClass || 'text-lg'} text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200 cursor-pointer`}
       aria-label="Toggle theme"
       title={`Theme: ${theme}`}
       whileHover={{ scale: 1.05 }}

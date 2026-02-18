@@ -7,15 +7,16 @@ interface SocialLinkProps {
   label: string
   hoverColorClass: string
   darkHoverColorClass: string
+  sizeClass?: string
 }
 
-function SocialLink({ href, icon: Icon, label, hoverColorClass, darkHoverColorClass }: SocialLinkProps) {
+function SocialLink({ href, icon: Icon, label, hoverColorClass, darkHoverColorClass, sizeClass }: SocialLinkProps) {
   return (
     <motion.a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`relative inline-block text-lg text-gray-700 dark:text-gray-300 cursor-pointer ${hoverColorClass} ${darkHoverColorClass} transition-colors duration-200`}
+      className={`relative inline-block ${sizeClass || 'text-lg'} text-gray-700 dark:text-gray-300 cursor-pointer ${hoverColorClass} ${darkHoverColorClass} transition-colors duration-200`}
       aria-label={label}
       title={label}
       whileHover="hover"
@@ -44,7 +45,7 @@ function SocialLink({ href, icon: Icon, label, hoverColorClass, darkHoverColorCl
   )
 }
 
-export default function SocialLinks() {
+export default function SocialLinks({ sizeClass }: { sizeClass?: string }) {
   return (
     <div className="flex items-center gap-3">
       <SocialLink
@@ -53,6 +54,7 @@ export default function SocialLinks() {
         label="GitHub"
         hoverColorClass="hover:text-gray-400"
         darkHoverColorClass="dark:hover:text-gray-400"
+        sizeClass={sizeClass}
       />
       <SocialLink
         href="https://www.linkedin.com/in/ramennissan/"
@@ -60,6 +62,7 @@ export default function SocialLinks() {
         label="LinkedIn"
         hoverColorClass="hover:text-blue-500"
         darkHoverColorClass="dark:hover:text-blue-400"
+        sizeClass={sizeClass}
       />
     </div>
   )

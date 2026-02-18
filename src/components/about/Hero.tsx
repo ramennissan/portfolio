@@ -7,7 +7,7 @@ export default function Hero() {
         </div>
         <div>
           <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 dark:text-white leading-tight">Ramen Nissan</h1>
-          <p className="mt-2">
+          <p className="mt-2 flex items-center gap-2 whitespace-nowrap">
             <a href="mailto:ramen.nissan@hotmail.com" className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 hover:underline">ramen[dot]nissan[at]hotmail[dot]com</a>
             <span className="mx-2 text-gray-400">•</span>
             <a href="mailto:ramen.nissan@torontomu.ca" className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 hover:underline">ramen[dot]nissan[at]torontomu[dot]ca</a>

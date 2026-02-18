@@ -384,9 +384,9 @@ export default function Header() {
       </nav>
       <div className={`flex items-center ${headerMode === 'top' ? 'gap-3 h-full flex-row' : 'gap-6 flex-col w-full mt-4'}`}>
         {headerMode === 'sidebar' ? (
-          <div className="flex items-center gap-3 px-3 sidebar-extras">
-            <SocialLinks />
-            <ThemeToggle />
+            <div className="flex items-center gap-3 px-3 sidebar-extras">
+            <SocialLinks sizeClass={headerMode === 'sidebar' ? 'text-xl' : 'text-lg'} />
+            <ThemeToggle sizeClass={headerMode === 'sidebar' ? 'text-xl' : 'text-lg'} />
           </div>
         ) : (
           <>
