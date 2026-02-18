@@ -17,8 +17,8 @@ export default function preventOverscroll(container?: HTMLElement | Window) {
   // Wheel handler (desktop)
   const onWheel = (e: Event) => {
     // Skip blocking for elements inside .github-calendar-wrapper to allow pinch-zoom and horizontal pan
-    const target = e.target as HTMLElement;
-    if (target?.closest('.github-calendar-wrapper')) return;
+    const eventTarget = e.target as HTMLElement;
+    if (eventTarget?.closest('.github-calendar-wrapper')) return;
 
     const we = e as WheelEvent;
     const delta = we.deltaY;
@@ -66,8 +66,8 @@ export default function preventOverscroll(container?: HTMLElement | Window) {
 
   const onTouchMove = (e: Event) => {
     // Skip blocking for elements inside .github-calendar-wrapper to allow pinch-zoom and horizontal pan
-    const target = e.target as HTMLElement;
-    if (target?.closest('.github-calendar-wrapper')) return;
+    const eventTarget = e.target as HTMLElement;
+    if (eventTarget?.closest('.github-calendar-wrapper')) return;
 
     const te = e as TouchEvent;
     const currentY = te.touches?.[0]?.clientY ?? 0;
