@@ -7,11 +7,11 @@ export default function Hero() {
         </div>
         <div className="flex-1 min-w-0">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 dark:text-white leading-tight">Ramen Nissan</h1>
-          <p className="mt-2 flex flex-col sm:flex-row items-center gap-1 text-sm">
-            <a href="mailto:ramen.nissan@hotmail.com" className="w-full text-center sm:w-auto sm:text-left whitespace-normal sm:whitespace-nowrap break-words">ramen[dot]nissan[at]hotmail[dot]com</a>
-            <span className="hidden sm:inline mx-1 text-gray-400">•</span>
-            <a href="mailto:ramen.nissan@torontomu.ca" className="w-full text-center sm:w-auto sm:text-left whitespace-normal sm:whitespace-nowrap break-words">ramen[dot]nissan[at]torontomu[dot]ca</a>
-          </p>
+          <div className="mt-2 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-1 text-sm">
+            <a href="mailto:ramen.nissan@hotmail.com" className="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 hover:underline">ramen[dot]nissan[at]hotmail[dot]com</a>
+            <span className="hidden sm:inline text-gray-400">•</span>
+            <a href="mailto:ramen.nissan@torontomu.ca" className="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 hover:underline">ramen[dot]nissan[at]torontomu[dot]ca</a>
+          </div>
           <p className="text-gray-700 dark:text-gray-300 mt-4 max-w-xl">I aspire to research AI/ML. I enjoy solving problems at the intersection of machine learning/computer vision, specifically their applications in fields like physics and bio.</p>
         </div>
       </div>
