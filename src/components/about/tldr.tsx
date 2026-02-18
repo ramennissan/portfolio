@@ -58,7 +58,7 @@ export default function TLDR()
                 <strong>Currently, I am...</strong>
             </p>
             <p className="text-blue-800 dark:text-blue-200">
-                studying <a className="font-semibold text-blue-700 hover:text-blue-800 dark:text-blue-100 dark:hover:text-blue-50 hover:underline" href="#education" onClick={handleEducationClick}>computer engineering at TMU</a>, building <a className="font-semibold text-blue-700 hover:text-blue-800 dark:text-blue-100 dark:hover:text-blue-50 hover:underline" href="/projects#projects">full-stack applications</a>, and <a className="font-semibold text-blue-700 hover:text-blue-800 dark:text-blue-100 dark:hover:text-blue-50 hover:underline" href="/bookshelf#bookshelf">reading</a>.
+                studying <a className="font-semibold text-blue-700 hover:text-blue-800 dark:text-blue-100 dark:hover:text-blue-50 hover:underline" href="#education" onClick={handleEducationClick}>computer engineering at TMU</a>, building <a className="font-semibold text-blue-700 hover:text-blue-800 dark:text-blue-100 dark:hover:text-blue-50 hover:underline" href="#/projects">full-stack applications</a>, and <a className="font-semibold text-blue-700 hover:text-blue-800 dark:text-blue-100 dark:hover:text-blue-50 hover:underline" href="#/bookshelf">reading</a>.
             </p>
         </div>
     );
