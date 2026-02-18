@@ -43,11 +43,24 @@ const GitHubChart = memo(function GitHubChart({ username }: { username: string }
     const recompute = () => {
       const wrap = wrapperRef.current;
       if (!wrap) return;
+      // try to find the calendar element or its svg child for a reliable width
       const calendar = wrap.querySelector('.react-activity-calendar') as HTMLElement | null;
-      if (!calendar) return;
-      const wrapperWidth = wrap.clientWidth || wrap.getBoundingClientRect().width;
-      const calWidth = calendar.scrollWidth || calendar.getBoundingClientRect().width;
-      if (!calWidth) return;
+      let calWidth = 0;
+      if (calendar) {
+        const firstChild = calendar.firstElementChild as HTMLElement | null;
+        calWidth = (firstChild && (firstChild.getBoundingClientRect().width || firstChild.scrollWidth)) || (calendar.getBoundingClientRect().width || calendar.scrollWidth);
+      }
+      // fallback: attempt bounding rect of any descendant
+      if (!calWidth) {
+        const anyDesc = wrap.querySelector('*') as HTMLElement | null;
+        if (anyDesc) calWidth = anyDesc.getBoundingClientRect().width || anyDesc.scrollWidth;
+      }
+
+      const wrapperWidth = wrap.clientWidth || wrap.getBoundingClientRect().width || wrap.scrollWidth;
+      if (!calWidth || !wrapperWidth) {
+        setScale(1);
+        return;
+      }
       const newScale = Math.min(1, wrapperWidth / calWidth);
       setScale((s) => {
         if (Math.abs(s - newScale) < 0.01) return s;
@@ -55,21 +68,22 @@ const GitHubChart = memo(function GitHubChart({ username }: { username: string }
       });
     };
 
-    // Recompute after next tick to allow calendar to render
-    const t = setTimeout(recompute, 30);
+    // Recompute after a short delay to allow the calendar to finish rendering
+    const t = setTimeout(recompute, 250);
 
     if (wrapperRef.current && typeof ResizeObserver !== 'undefined') {
       ro = new ResizeObserver(recompute);
       ro.observe(wrapperRef.current);
-      // also observe calendar element if present
       const cal = wrapperRef.current.querySelector('.react-activity-calendar') as HTMLElement | null;
       if (cal) ro.observe(cal);
     }
 
     window.addEventListener('resize', recompute);
+    window.addEventListener('orientationchange', recompute);
     return () => {
       clearTimeout(t);
       window.removeEventListener('resize', recompute);
+      window.removeEventListener('orientationchange', recompute);
       if (ro) ro.disconnect();
     };
   }, [username, currentColors]);
@@ -121,7 +135,7 @@ const GitHubChart = memo(function GitHubChart({ username }: { username: string }
           </div>
         </div>
 
-        <div ref={wrapperRef as any} className="flex justify-center github-calendar-wrapper" style={{ overflow: 'hidden' }}>
+        <div ref={wrapperRef as any} className="w-full flex justify-center github-calendar-wrapper" style={{ overflow: 'hidden' }}>
           {/* CSS Override as a backup to ensure the dark mode background color applies */}
           {isDark && (
             <style>{`

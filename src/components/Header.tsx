@@ -266,13 +266,13 @@ export default function Header() {
     return (
     <motion.header
       ref={(el) => { headerRef.current = el; }}
-    style={headerMode === 'sidebar' && sidebarWidth ? { width: `${sidebarWidth}px`, minWidth: '120px' } : undefined}
+    style={headerMode === 'sidebar' && (constrainedSidebarWidth || sidebarWidth) ? { width: `${constrainedSidebarWidth || sidebarWidth}px`, minWidth: '140px' } : undefined}
       animate={{
         top: headerMode === 'top' ? '1rem' : '50%',
         left: headerMode === 'top' ? '50%' : '1rem',
         translateX: headerMode === 'top' ? '-50%' : '0%',
         translateY: headerMode === 'top' ? '0%' : '-50%',
-        width: headerMode === 'top' ? 'calc(100% - 2rem)' : (sidebarWidth ? `${sidebarWidth}px` : 'auto'),
+        width: headerMode === 'top' ? 'calc(100% - 2rem)' : (constrainedSidebarWidth ? `${constrainedSidebarWidth}px` : (sidebarWidth ? `${sidebarWidth}px` : 'auto')),
         maxWidth: headerMode === 'top' ? '48rem' : 'none',
         height: headerMode === 'top' ? '3rem' : 'auto',
         flexDirection: headerMode === 'top' ? 'row' : 'column',
