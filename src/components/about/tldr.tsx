@@ -51,6 +51,21 @@ export default function TLDR()
         window.requestAnimationFrame(step);
     };
 
+    const handleHashNavigate = (event: MouseEvent<HTMLAnchorElement>, hash: string) => {
+        event.preventDefault();
+        // Force-set the hash to ensure HashRouter picks it up and avoid any
+        // accidental navigation to a server path that would return 404.
+        try {
+            window.location.hash = hash;
+        } catch (e) {
+            // fallback
+            window.location.href = `#${hash}`;
+        }
+        // ensure the scroll container is at top for the target page
+        const el = document.querySelector('.app-scroll') as HTMLElement | null;
+        if (el) el.scrollTop = 0;
+    };
+
     return (
         <div className="p-6 rounded-2xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800">
             <h2 className="text-lg font-bold text-blue-900 dark:text-blue-100 mb-2 text-center">TL;DR</h2>
@@ -58,7 +73,7 @@ export default function TLDR()
                 <strong>Currently, I am...</strong>
             </p>
             <p className="text-blue-800 dark:text-blue-200">
-                studying <a className="font-semibold text-blue-700 hover:text-blue-800 dark:text-blue-100 dark:hover:text-blue-50 hover:underline" href="#education" onClick={handleEducationClick}>computer engineering at TMU</a>, building <a className="font-semibold text-blue-700 hover:text-blue-800 dark:text-blue-100 dark:hover:text-blue-50 hover:underline" href="#/projects">full-stack applications</a>, and <a className="font-semibold text-blue-700 hover:text-blue-800 dark:text-blue-100 dark:hover:text-blue-50 hover:underline" href="#/bookshelf">reading</a>.
+                studying <a className="font-semibold text-blue-700 hover:text-blue-800 dark:text-blue-100 dark:hover:text-blue-50 hover:underline" href="#education" onClick={handleEducationClick}>computer engineering at TMU</a>, building <a className="font-semibold text-blue-700 hover:text-blue-800 dark:text-blue-100 dark:hover:text-blue-50 hover:underline" href="#/projects" onClick={(e) => handleHashNavigate(e, '/projects')}>full-stack applications</a>, and <a className="font-semibold text-blue-700 hover:text-blue-800 dark:text-blue-100 dark:hover:text-blue-50 hover:underline" href="#/bookshelf" onClick={(e) => handleHashNavigate(e, '/bookshelf')}>reading</a>.
             </p>
         </div>
     );
