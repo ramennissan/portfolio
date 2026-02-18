@@ -1,1 +1,0 @@
-import{j as e}from"./index.js";function s(){return e.jsxs("section",{id:"bookshelf",style:{padding:"6rem 2rem 2rem 2rem"},children:[e.jsx("h1",{children:"Bookshelf: To be added"}),e.jsx("p",{})]})}export{s as default};
