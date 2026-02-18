@@ -5,9 +5,9 @@ export default function Hero() {
         <div className="flex-shrink-0 w-36 h-36 rounded-2xl bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
           <span className="text-center text-xs text-gray-600 dark:text-gray-300 px-2">Photo coming soon</span>
         </div>
-        <div>
+        <div className="min-w-0">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 dark:text-white leading-tight">Ramen Nissan</h1>
-          <p className="mt-2 flex items-center gap-2 whitespace-nowrap">
+          <p className="mt-2 flex items-center gap-2 whitespace-nowrap overflow-x-auto">
             <a href="mailto:ramen.nissan@hotmail.com" className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 hover:underline">ramen[dot]nissan[at]hotmail[dot]com</a>
             <span className="mx-2 text-gray-400">•</span>
             <a href="mailto:ramen.nissan@torontomu.ca" className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 hover:underline">ramen[dot]nissan[at]torontomu[dot]ca</a>
