@@ -24,7 +24,14 @@ export default function TLDR()
         const duration = 450;
         let startTime: number | null = null;
 
-        window.history.pushState(null, '', '#education');
+        // Keep the app route (HashRouter) at the root and encode the
+        // anchor as a query param so refresh/navigation still loads the
+        // About page. Example: #/?anchor=education
+        try {
+            window.history.pushState(null, '', '#/?anchor=education');
+        } catch (e) {
+            window.location.hash = '/?anchor=education';
+        }
 
         const easeInOutQuad = (t: number) =>
             t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;

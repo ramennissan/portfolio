@@ -37,6 +37,7 @@ const GitHubChart = memo(function GitHubChart({ username }: { username: string }
   const currentColors = isDark ? themeColors.dark : themeColors.light;
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const [scale, setScale] = useState(1);
+  const [blockSizeState, setBlockSizeState] = useState<number | null>(null);
 
   useEffect(() => {
     let ro: ResizeObserver | null = null;
@@ -65,6 +66,18 @@ const GitHubChart = memo(function GitHubChart({ username }: { username: string }
       setScale((s) => {
         if (Math.abs(s - newScale) < 0.01) return s;
         return newScale;
+      });
+
+      // Compute a responsive block size for narrow viewports so calendar scales nicely
+      // Typical calendar renders ~53 columns (weeks). Reserve small padding.
+      const columns = 53;
+      const blockMargin = 2; // same as prop
+      const padding = 16; // small internal padding allowance
+      const estimatedBlock = Math.max(4, Math.min(12, (wrapperWidth - padding) / columns - blockMargin));
+      setBlockSizeState((prev) => {
+        if (!prev) return Math.round(estimatedBlock * 10) / 10;
+        if (Math.abs(prev - estimatedBlock) < 0.2) return prev;
+        return Math.round(estimatedBlock * 10) / 10;
       });
     };
 
@@ -135,7 +148,7 @@ const GitHubChart = memo(function GitHubChart({ username }: { username: string }
           </div>
         </div>
 
-        <div ref={wrapperRef as any} className="w-full flex justify-center github-calendar-wrapper" style={{ overflow: 'hidden' }}>
+        <div ref={wrapperRef as any} className="w-full flex justify-center github-calendar-wrapper" style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
           {/* CSS Override as a backup to ensure the dark mode background color applies */}
           {isDark && (
             <style>{`
@@ -157,7 +170,7 @@ const GitHubChart = memo(function GitHubChart({ username }: { username: string }
                   light: currentColors,
                   dark: currentColors,
                 }}
-                blockSize={11.5}
+                blockSize={blockSizeState ?? 11.5}
                 blockMargin={2}
                 blockRadius={0}
                 showColorLegend={false}

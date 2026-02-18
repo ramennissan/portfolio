@@ -7,10 +7,10 @@ export default function Hero() {
         </div>
         <div className="min-w-0">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 dark:text-white leading-tight">Ramen Nissan</h1>
-          <p className="mt-2 flex items-center gap-1 whitespace-nowrap flex-nowrap">
-            <a href="mailto:ramen.nissan@hotmail.com" className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 hover:underline">ramen[dot]nissan[at]hotmail[dot]com</a>
+          <p className="mt-2 flex items-center gap-1 flex-wrap overflow-x-auto">
+            <a href="mailto:ramen.nissan@hotmail.com" className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 hover:underline break-all">ramen[dot]nissan[at]hotmail[dot]com</a>
             <span className="mx-1 text-gray-400">•</span>
-            <a href="mailto:ramen.nissan@torontomu.ca" className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 hover:underline">ramen[dot]nissan[at]torontomu[dot]ca</a>
+            <a href="mailto:ramen.nissan@torontomu.ca" className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 hover:underline break-all">ramen[dot]nissan[at]torontomu[dot]ca</a>
           </p>
           <p className="text-gray-700 dark:text-gray-300 mt-4 max-w-xl">I aspire to research AI/ML. I enjoy solving problems at the intersection of machine learning/computer vision, specifically their applications in fields like physics and bio.</p>
         </div>

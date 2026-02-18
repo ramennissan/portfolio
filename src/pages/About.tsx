@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import "react-medium-image-zoom/dist/styles.css";
 
 import { Project as ProjectType } from "../components/ProjectCard";
@@ -21,6 +23,37 @@ const currentProjectIds = [
 const featuredResearchIds = ["g1", "so-101", "tfc"];
 
 export default function About() {
+  const location = useLocation();
+
+  // On mount, if URL includes ?anchor=..., scroll to that element inside the scroll container.
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const anchor = params.get('anchor');
+    if (!anchor) return;
+
+    const target = document.getElementById(anchor);
+    if (!target) return;
+
+    const container = document.querySelector('.app-scroll') as HTMLElement | null;
+    const containerRect = container ? container.getBoundingClientRect() : { top: 0 };
+    const targetRect = target.getBoundingClientRect();
+    const targetY = container
+      ? targetRect.top - containerRect.top + container.scrollTop
+      : targetRect.top + window.scrollY;
+
+    if (container) {
+      container.scrollTop = targetY;
+    } else {
+      window.scrollTo({ top: targetY });
+    }
+    // Optionally remove anchor from URL so subsequent refresh won't repeat
+    try {
+      const base = '#/';
+      window.history.replaceState(null, '', base);
+    } catch (e) {
+      /* ignore */
+    }
+  }, [location.search]);
   // --- USER DATA CONFIGURATION ---
   // You can easily edit your info here:
   const currentProjects: ProjectType[] = [
