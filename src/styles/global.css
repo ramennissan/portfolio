@@ -58,3 +58,15 @@ html::-webkit-scrollbar {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
 }
+
+/* Prevent long words or code from overflowing on small screens */
+html, body, .app-scroll, .prose {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Ensure images scale down on narrow viewports */
+img, svg {
+  max-width: 100%;
+  height: auto;
+}

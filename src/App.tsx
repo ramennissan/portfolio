@@ -24,7 +24,7 @@ function LoadingSpinner() {
 
 export default function App() {
   return (
-    <ScrollProgressProvider className="app-scroll bg-white dark:bg-[#1f1f1d] text-gray-900 dark:text-gray-100 transition-colors duration-300 relative overflow-x-hidden">
+    <ScrollProgressProvider className="app-scroll bg-white dark:bg-[#1f1f1d] text-gray-900 dark:text-gray-100 transition-colors duration-300 relative">
       <div className="fixed bottom-0 left-0 right-0 z-[100]">
         <ScrollProgress className="h-1" style={{ backgroundColor: '#0273d5' }} />
       </div>
