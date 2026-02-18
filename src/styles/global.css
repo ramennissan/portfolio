@@ -33,6 +33,13 @@ html, body, #root {
   touch-action: pan-y;
 }
 
+/* Allow pinch-zoom and horizontal panning inside the GitHub calendar wrapper
+   so users can pan/zoom the contribution grid on mobile without the
+   global touch-action blocking it. */
+.github-calendar-wrapper {
+  touch-action: pan-x pinch-zoom;
+}
+
 /* Hide scrollbar for the app scroll container */
 .app-scroll {
   scrollbar-width: none; /* Firefox */
