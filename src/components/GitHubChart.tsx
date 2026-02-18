@@ -1,7 +1,7 @@
 import { GitHubCalendar } from "react-github-calendar";
 import { motion } from "framer-motion";
 import { useTheme } from "@/hooks/useTheme";
-import { useEffect, useState, useMemo, memo } from "react";
+import { useEffect, useState, useMemo, memo, useRef } from "react";
 import "react-github-calendar/tooltips.css";
 
 
@@ -35,6 +35,44 @@ const GitHubChart = memo(function GitHubChart({ username }: { username: string }
   }), []);
 
   const currentColors = isDark ? themeColors.dark : themeColors.light;
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    let ro: ResizeObserver | null = null;
+    const recompute = () => {
+      const wrap = wrapperRef.current;
+      if (!wrap) return;
+      const calendar = wrap.querySelector('.react-activity-calendar') as HTMLElement | null;
+      if (!calendar) return;
+      const wrapperWidth = wrap.clientWidth || wrap.getBoundingClientRect().width;
+      const calWidth = calendar.scrollWidth || calendar.getBoundingClientRect().width;
+      if (!calWidth) return;
+      const newScale = Math.min(1, wrapperWidth / calWidth);
+      setScale((s) => {
+        if (Math.abs(s - newScale) < 0.01) return s;
+        return newScale;
+      });
+    };
+
+    // Recompute after next tick to allow calendar to render
+    const t = setTimeout(recompute, 30);
+
+    if (wrapperRef.current && typeof ResizeObserver !== 'undefined') {
+      ro = new ResizeObserver(recompute);
+      ro.observe(wrapperRef.current);
+      // also observe calendar element if present
+      const cal = wrapperRef.current.querySelector('.react-activity-calendar') as HTMLElement | null;
+      if (cal) ro.observe(cal);
+    }
+
+    window.addEventListener('resize', recompute);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener('resize', recompute);
+      if (ro) ro.disconnect();
+    };
+  }, [username, currentColors]);
 
   return (
     <motion.section
@@ -83,7 +121,7 @@ const GitHubChart = memo(function GitHubChart({ username }: { username: string }
           </div>
         </div>
 
-        <div className="flex justify-center github-calendar-wrapper">
+        <div ref={wrapperRef as any} className="flex justify-center github-calendar-wrapper" style={{ overflow: 'hidden' }}>
           {/* CSS Override as a backup to ensure the dark mode background color applies */}
           {isDark && (
             <style>{`
@@ -92,24 +130,26 @@ const GitHubChart = memo(function GitHubChart({ username }: { username: string }
               }
             `}</style>
           )}
-          <a
-            href={`https://github.com/${username}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block cursor-pointer"
-          >
-            <GitHubCalendar
-              username={username}
-              theme={{
-                light: currentColors,
-                dark: currentColors,
-              }}
-              blockSize={11.5}
-              blockMargin={2}
-              blockRadius={0}
-              showColorLegend={false}
-            />
-          </a>
+          <div style={{ display: 'inline-block', transform: `scale(${scale})`, transformOrigin: 'top center' }}>
+            <a
+              href={`https://github.com/${username}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block cursor-pointer"
+            >
+              <GitHubCalendar
+                username={username}
+                theme={{
+                  light: currentColors,
+                  dark: currentColors,
+                }}
+                blockSize={11.5}
+                blockMargin={2}
+                blockRadius={0}
+                showColorLegend={false}
+              />
+            </a>
+          </div>
         </div>
 
 
