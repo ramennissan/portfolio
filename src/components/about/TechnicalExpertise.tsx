@@ -13,7 +13,7 @@ export default function TechnicalExpertiseSection() {
         },
         {
             title: 'Physics & Mathematics',
-            tags: ['Classical Mechanics', 'Linear Algebra', 'Calculus', 'Differential Equations']
+            tags: ['Classical Mechanics', 'Linear Algebra', 'Calculus', 'Differential Equations', 'Electric Circuits']
         }
     ];
 
@@ -52,7 +52,7 @@ export default function TechnicalExpertiseSection() {
                     </div>
                 </div>
 
-                {/* Right: languages with logos (no percentages) */}
+                {/* Right: languages with logos () */}
                 <div className="p-6 rounded-2xl border border-transparent hover:border-slate-200 dark:hover:border-gray-700 transition-colors duration-150">
                     <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">Languages</h3>
                     <div className="space-y-3">
