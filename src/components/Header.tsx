@@ -305,7 +305,7 @@ export default function Header() {
       className={`fixed z-50 flex justify-between items-center bg-gray-100/80 dark:bg-[#2a2a28]/80 backdrop-blur-md text-gray-900 dark:text-white transition-colors duration-300 border border-gray-200 dark:border-gray-800 shadow-sm ${headerMode === 'sidebar' ? 'min-w-[120px]' : 'w-full'}`}
     >
       <nav ref={(el) => { /* keep for potential future use */ }} className={headerMode === 'top' ? 'h-full flex items-center' : 'flex items-center w-full'}>
-        <ul ref={navListRef} className={`flex ${headerMode === 'top' ? 'gap-6' : 'gap-2 flex-col'} list-none items-center ${headerMode === 'top' ? 'h-full' : 'w-full'}`}>
+        <ul ref={navListRef} className={`flex ${headerMode === 'top' ? 'gap-3 md:gap-6' : 'gap-2 flex-col'} list-none items-center ${headerMode === 'top' ? 'h-full' : 'w-full'}`}>
           <li className={headerMode === 'top' ? 'h-full flex items-center' : 'flex items-center w-full justify-center flex-shrink-0'}>
             <Link
               to="/"
