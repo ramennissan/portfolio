@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   </React.StrictMode>
 )
 
-// --------------------- Prevent overscroll ---------------------
+
 let _cleanupPreventOverscroll: (() => void) | null = null
 
 const _attachPrevent = () => {

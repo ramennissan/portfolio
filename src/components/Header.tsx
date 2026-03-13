@@ -324,6 +324,24 @@ export default function Header() {
               )}
             </Link>
           </li>
+          <li className={headerMode === 'top' ? 'h-full flex items-center' : 'flex items-center w-full justify-center flex-shrink-0'}>
+            <Link
+              to="/research"
+              className="no-underline font-medium relative transition-colors hover:text-[#0073d5] py-1 whitespace-nowrap"
+            >
+              Research
+              {isActiveRoute('/research') && (
+                <motion.div
+                  layoutId="activeIndicator-research"
+                  className="absolute bottom-0.5 left-0 right-0 h-0.5 bg-current"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  style={{ originX: 0.5 }}
+                  transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                />
+              )}
+            </Link>
+          </li>
           <li className={`relative ${headerMode === 'top' ? 'h-full flex items-center' : 'flex items-center w-full justify-center flex-shrink-0'}`} ref={dropdownRef}>
             <div className={`flex items-center gap-1 ${headerMode === 'top' ? 'h-full' : ''}`}>
               <Link

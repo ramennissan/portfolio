@@ -9,6 +9,7 @@ import {
 import { Suspense, lazy } from 'react'
 
 const About = lazy(() => import('./pages/About'))
+const Research = lazy(() => import('./pages/Research'))
 const Projects = lazy(() => import('./pages/Projects'))
 const ProjectDetail = lazy(() => import('./pages/ProjectDetail'))
 const Blog = lazy(() => import('./pages/Blog'))
@@ -35,6 +36,7 @@ export default function App() {
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             <Route path="/" element={<About />} />
+            <Route path="/research" element={<Research />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:id" element={<ProjectDetail />} />
             <Route path="/blog" element={<Blog />} />
