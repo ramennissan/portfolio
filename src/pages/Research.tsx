@@ -2,25 +2,7 @@ import { motion } from "framer-motion";
 import { useState, useMemo } from "react";
 import FilterDropdown from "../components/FilterDropdown";
 import ResearchCard, { type Research } from "../components/ResearchCard";
-
-const sampleResearch: Research[] = [
-  {
-    id: "research-1",
-    title: "Sample Research Project 1",
-    description: "Add your research description here. This is where you can describe the key findings, methodology, and impact of your research.",
-    image: "/assets/About/research-placeholder.jpg",
-    tags: ["Tag1", "Tag2", "Tag3"],
-    paperLink: "#"
-  },
-  {
-    id: "research-2",
-    title: "Sample Research Project 2",
-    description: "Add your research description here. This is where you can describe the key findings, methodology, and impact of your research.",
-    image: "/assets/About/research-placeholder.jpg",
-    tags: ["Tag1", "Tag4"],
-    paperLink: "#"
-  }
-];
+import { sampleResearch } from "../data/researchData";
 
 export default function Research() {
   const [research] = useState<Research[]>(sampleResearch);

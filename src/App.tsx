@@ -10,6 +10,8 @@ import { Suspense, lazy } from 'react'
 
 const About = lazy(() => import('./pages/About'))
 const Research = lazy(() => import('./pages/Research'))
+const ResearchDetail = lazy(() => import('./pages/ResearchDetail'))
+const PaperPlaceholder = lazy(() => import('./pages/PaperPlaceholder'))
 const Projects = lazy(() => import('./pages/Projects'))
 const ProjectDetail = lazy(() => import('./pages/ProjectDetail'))
 const Blog = lazy(() => import('./pages/Blog'))
@@ -37,6 +39,8 @@ export default function App() {
           <Routes>
             <Route path="/" element={<About />} />
             <Route path="/research" element={<Research />} />
+            <Route path="/research/:id" element={<ResearchDetail />} />
+            <Route path="/research/:id/paper" element={<PaperPlaceholder />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:id" element={<ProjectDetail />} />
             <Route path="/blog" element={<Blog />} />

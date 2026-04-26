@@ -14,6 +14,11 @@ export default function TechnicalExpertiseSection() {
         {
             title: 'Physics & Mathematics',
             tags: ['Classical Mechanics', 'Linear Algebra', 'Calculus', 'Differential Equations', 'Electric Circuits']
+        },
+        {
+            title: 'Robotics',
+            tags: ['ROS', 'ROS2', 'Pybullet', 'Gazebo', 'Robosuite']
+
         }
     ];
 
